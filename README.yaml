@@ -1,0 +1,50 @@
+#
+# Canonical configuration for README.md (cloudposse-style doc standard,
+# native to Devotica). Run `make readme` to regenerate the terraform-docs
+# section of README.md.
+#
+
+name: terraform-aws-guardduty
+license: APACHE2
+github_repo: devotica-labs/terraform-aws-guardduty
+
+badges:
+  - name: CI
+    image: https://github.com/devotica-labs/terraform-aws-guardduty/actions/workflows/ci.yml/badge.svg
+    url: https://github.com/devotica-labs/terraform-aws-guardduty/actions/workflows/ci.yml
+  - name: Release
+    image: https://github.com/devotica-labs/terraform-aws-guardduty/actions/workflows/release.yml/badge.svg
+    url: https://github.com/devotica-labs/terraform-aws-guardduty/actions/workflows/release.yml
+  - name: License
+    image: https://img.shields.io/badge/License-Apache_2.0-blue.svg
+    url: LICENSE
+
+related:
+  - name: terraform-aws-securityhub
+    description: Aggregates GuardDuty findings alongside other security signals.
+    url: https://github.com/devotica-labs
+  - name: terraform-aws-kms-key
+    description: Customer-managed key used to encrypt findings exported to S3.
+    url: https://github.com/devotica-labs
+
+description: |-
+  Terraform module that enables **Amazon GuardDuty** threat detection for an
+  account. Creates a detector, turns on every protection feature that needs no
+  extra wiring (S3 data events, EKS audit logs, EBS malware protection, RDS
+  login events, Lambda network logs), and can optionally export findings to a
+  KMS-encrypted S3 bucket.
+
+introduction: |-
+  This module creates an [Amazon GuardDuty detector](https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html)
+  with a fintech baseline: the detector is enabled, findings publish every
+  `FIFTEEN_MINUTES`, and the default feature map enables every protection that
+  requires no `additional_configuration` block. Runtime-monitoring features are
+  left to the caller since they need their own configuration. Findings can be
+  exported to an S3 bucket, encrypted with a customer-managed KMS key.
+
+usage: |-
+  See [`examples/complete`](examples/complete) for the full surface (detector,
+  feature map, and encrypted finding export) and [`examples/basic`](examples/basic)
+  for the fintech-default detector.
+
+contributors: []
